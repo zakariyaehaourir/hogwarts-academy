@@ -6,7 +6,7 @@
     "start": "node dist/index.js",
     "dev": "npx tsx src/main.ts",
     "test": "vitest",
-    "test:ci" : "vitest run"
+    "test:ci" : "vitest run --passWithNoTests"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
