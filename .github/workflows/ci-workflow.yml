@@ -1,0 +1,35 @@
+name: CI Hogwars Academy 
+on:
+    push:
+        branches:
+            - dev
+            
+    pull_request:
+        branches:
+            - main
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Cloning project
+              uses: actions/checkout@v4
+
+            - name: Configure environement
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+                cache: 'npm'
+
+            - name: Install deps
+              run: npm ci
+
+            
+            - name: Build Hogwarts-academy project
+              run: npm run build
+
+            
+            - name : Run tests
+              run: npm run test:ci
