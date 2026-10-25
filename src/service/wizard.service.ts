@@ -1,5 +1,6 @@
-import { IWizardRepository, WizardRepository } from "../repository/wizard.repository";
+import { IWizardRepository } from "../repository/wizard.repository";
 import { AcademyEventType, NewWizard, SpellCastEvent, Wizard } from "../shared/types";
+import { isHouse } from "../shared/utils";
 import { AcademyEventListener } from "./academy-event-emitter";
 
 
@@ -48,5 +49,18 @@ export class WizardService {
         };
 
         this.dispatcher.emit(AcademyEventType.SpellCast, event);
+    }
+
+    public isWizard(value : unknown): value is Wizard{
+        if(typeof value !== "object" || value === null){
+            return false
+        }
+        const wizard = value as Record<string , unknown>;
+        return (
+            typeof wizard.id === "number" &&
+            typeof wizard.name === "string" &&
+            typeof wizard.level === "number" &&
+            isHouse(wizard.house)
+        )
     }
 }

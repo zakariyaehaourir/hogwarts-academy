@@ -53,3 +53,9 @@ const spellService = factory.getSpellService()
 console.log(spellService.calculatePower(5 , 22)) //Missed
 console.log(spellService.calculatePower(1 , 22)) //Missed
 console.log(spellService.calculatePower(5 , 22)) // Hit
+
+/** STEP 6 */
+console.log("--------------------- STEP 6 Type guards -----------------")
+wizardService.isWizard(savedHaourir) ? 
+                    console.log(`${savedHaourir.name} is a valid wizard yuupii :)`) : 
+                    console.error(`isnt a valid wizard :(`)
