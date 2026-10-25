@@ -1,4 +1,4 @@
-import { Repository } from "../repository/base-repository";
+import { IWizardRepository, WizardRepository } from "../repository/wizard.repository";
 import { NewWizard, Wizard } from "../shared/types";
 
 
@@ -6,7 +6,7 @@ export class WizardService {
     private static currentId = 1;
 
     //TODO : inject repository
-    constructor(private readonly repository:Repository<Wizard>) { }
+    constructor(private readonly repository: IWizardRepository) { }
         
 
 
@@ -32,5 +32,9 @@ export class WizardService {
     }
 
     return savedWizard;
-}
+    }
+
+    public getWizardsByHouse(house:Wizard["house"]):Wizard[]{
+        return this.repository.findByHouse(house)
+    }
 }
