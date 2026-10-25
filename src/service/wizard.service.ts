@@ -1,12 +1,13 @@
 import { IWizardRepository, WizardRepository } from "../repository/wizard.repository";
-import { NewWizard, Wizard } from "../shared/types";
+import { AcademyEventType, NewWizard, SpellCastEvent, Wizard } from "../shared/types";
+import { AcademyEventListener } from "./academy-event-emitter";
 
 
 export class WizardService {
     private static currentId = 1;
 
     //TODO : inject repository
-    constructor(private readonly repository: IWizardRepository) { }
+    constructor(private readonly repository: IWizardRepository , private readonly dispatcher:AcademyEventListener) { }
         
 
 
@@ -36,5 +37,16 @@ export class WizardService {
 
     public getWizardsByHouse(house:Wizard["house"]):Wizard[]{
         return this.repository.findByHouse(house)
+    }
+
+    public castSpell(wizardId: number, spellName: string): void {
+
+        const event: SpellCastEvent = {
+            type: AcademyEventType.SpellCast,
+            wizardId: wizardId,
+            spellName: spellName
+        };
+
+        this.dispatcher.emit(AcademyEventType.SpellCast, event);
     }
 }

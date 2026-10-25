@@ -55,3 +55,4 @@ export enum WizardRepositoryTypes {
   File = "File",
   Database = "DB"
 } 
+export type SpellCastEvent = Extract<AcademyEvent , {type:AcademyEventType.SpellCast}>
