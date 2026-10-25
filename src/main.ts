@@ -1,5 +1,6 @@
 import { ServiceContainer } from "./DI/service-container";
-import { NewWizard, SpellCastEvent, WizardRepositoryTypes } from "./shared/types";
+import { SpellRepository } from "./repository/spell.repository";
+import { NewWizard, Spell, SpellCastEvent, WizardRepositoryTypes } from "./shared/types";
 
 /** STEP 1 */
 const factory = new ServiceContainer()
@@ -37,3 +38,11 @@ console.log(wizardsInSlytherin);
 console.log("---------------------- STEP 3 ---------------------")
 factory.getAcademyEventEmitter()
 wizardService.castSpell(77, "Expecto Patronum");
+
+/** STEP 4 */
+const spellRepository = factory.getSpellRepository()
+try {
+    spellRepository.save({id:4 , name:"my spell" ,category : "defense" , power:-55})
+} catch (error) {
+    console.error(error)
+}
