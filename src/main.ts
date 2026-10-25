@@ -1,5 +1,6 @@
 import { ServiceContainer } from "./DI/service-container";
 import { SpellRepository } from "./repository/spell.repository";
+import { SpellCalculator } from "./service/spell.service";
 import { NewWizard, Spell, SpellCastEvent, WizardRepositoryTypes } from "./shared/types";
 
 /** STEP 1 */
@@ -42,7 +43,13 @@ wizardService.castSpell(77, "Expecto Patronum");
 /** STEP 4 */
 const spellRepository = factory.getSpellRepository()
 try {
-    spellRepository.save({id:4 , name:"my spell" ,category : "defense" , power:-55})
+    spellRepository.save({id:4 , name:"my spell" ,category : "defense" , power:55})
 } catch (error) {
     console.error(error)
 }
+/** STEP 5 */
+console.log("--------------- STEP 5 use cache --------------")
+const spellService = factory.getSpellService()
+console.log(spellService.calculatePower(5 , 22)) //Missed
+console.log(spellService.calculatePower(1 , 22)) //Missed
+console.log(spellService.calculatePower(5 , 22)) // Hit
