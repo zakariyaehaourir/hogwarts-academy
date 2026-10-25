@@ -1,4 +1,4 @@
-import { WizardRepository } from '../repository/wizard.repository'
+import { IWizardRepository, WizardRepository } from '../repository/wizard.repository'
 import { Repository } from "../repository/base-repository";
 import { Wizard, WizardRepositoryTypes } from "../shared/types";
 import { WizardService } from '../service/wizard.service';
@@ -8,7 +8,7 @@ import { WizardService } from '../service/wizard.service';
  */
 export class ServiceContainer{
 
-    private wizaredRepository :Repository<Wizard> | null= null
+    private wizaredRepository :IWizardRepository | null= null
     private wizardService: WizardService | null = null;
 
     /**
@@ -16,7 +16,7 @@ export class ServiceContainer{
      * @param whichType Wizard Repository type : Database | InMemo | File
      * @returns 
      */
-    public getWizardRepository(whichType: WizardRepositoryTypes): Repository<Wizard> {
+    public getWizardRepository(whichType: WizardRepositoryTypes): IWizardRepository {
         switch (whichType) {
             case WizardRepositoryTypes.InMemo:
                 if(!this.wizaredRepository){

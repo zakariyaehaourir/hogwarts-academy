@@ -39,4 +39,17 @@ describe("Test Wizard Service" ,()=>{
 
 
     });
+    
+    it("Should return list of wizards in spesific house" , ()=>{
+         const validWizard: NewWizard = {
+            name: "Hermione Granger",
+            house: "Gryffindor",
+            level: 1
+        };
+        wizardService.createWizard(validWizard)
+        wizardService.createWizard(validWizard)
+        wizardService.createWizard(validWizard)
+        const result = wizardService.getWizardsByHouse("Gryffindor")
+        expect(result.length).toBe(3)
+    })
 })

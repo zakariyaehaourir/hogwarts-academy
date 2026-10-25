@@ -22,3 +22,15 @@ const dracoData: NewWizard = {
 const savedDraco = wizardService.createWizard(dracoData)
 console.log("-------- Saved Draco ----------")
 console.log(savedDraco)
+
+/** STEP 2 */
+const haourirData: NewWizard = {
+            name: "Ari Haourir",
+            house: "Slytherin",
+            level: 0,
+        };
+const savedHaourir = wizardService.createWizard(haourirData)
+const wizardsInSlytherin=wizardService.getWizardsByHouse("Slytherin")
+console.log("-- List of wizards in Slytherin House --")
+console.log(wizardsInSlytherin);
+
