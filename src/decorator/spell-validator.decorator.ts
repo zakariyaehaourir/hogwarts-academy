@@ -1,5 +1,3 @@
-import { Spell } from "../shared/types";
-
 export function ValidateSpell(originalMethod: any, context: any){
     if(context.kind!= "method"){
         throw new Error("Cannot apply on this type")
