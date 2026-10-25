@@ -1,0 +1,5 @@
+[LOG-2026-10-25T15:55:41.135Z] Method: createWizard | Args: [{"name":"Harry Potter","house":"Gryffindor","level":1}] | Result: {"name":"Harry Potter","house":"Gryffindor","level":1,"id":1,"active":true}
+[LOG-2026-10-25T15:55:41.142Z] Method: createWizard | Args: [{"name":"Draco Malfoy","house":"Slytherin","level":8}] | Result: {"name":"Draco Malfoy","house":"Slytherin","level":8,"id":2,"active":true}
+[LOG-2026-10-25T15:55:41.146Z] Method: createWizard | Args: [{"name":"Ari Haourir","house":"Slytherin","level":0}] | Result: {"name":"Ari Haourir","house":"Slytherin","level":0,"id":3,"active":true}
+[LOG-2026-10-25T15:55:41.149Z] Method: getWizardsByHouse | Args: ["Slytherin"] | Result: [{"name":"Draco Malfoy","house":"Slytherin","level":8,"id":2,"active":true},{"name":"Ari Haourir","house":"Slytherin","level":0,"id":3,"active":true}]
+[LOG-2026-10-25T15:55:41.156Z] Method: castSpell | Args: [77,"Expecto Patronum"] | Result: void
