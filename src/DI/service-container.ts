@@ -3,6 +3,7 @@ import { Repository } from "../repository/base-repository";
 import { Wizard, WizardRepositoryTypes } from "../shared/types";
 import { WizardService } from '../service/wizard.service';
 import { AcademyEventListener } from '../service/academy-event-emitter';
+import { SpellRepository } from '../repository/spell.repository';
 
 /**
  * Inverion Of Control home made
@@ -43,5 +44,9 @@ export class ServiceContainer{
             this.wizardService = new WizardService(repository,dispatcher);
         }
         return this.wizardService;
+    }
+    
+    public getSpellRepository():SpellRepository{
+        return new SpellRepository()
     }
 }
