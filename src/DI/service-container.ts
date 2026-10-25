@@ -2,6 +2,7 @@ import { IWizardRepository, WizardRepository } from '../repository/wizard.reposi
 import { Repository } from "../repository/base-repository";
 import { Wizard, WizardRepositoryTypes } from "../shared/types";
 import { WizardService } from '../service/wizard.service';
+import { AcademyEventListener } from '../service/academy-event-emitter';
 
 /**
  * Inverion Of Control home made
@@ -10,6 +11,7 @@ export class ServiceContainer{
 
     private wizaredRepository :IWizardRepository | null= null
     private wizardService: WizardService | null = null;
+    private academyEmitter :AcademyEventListener | null = null;
 
     /**
      * 
@@ -28,10 +30,17 @@ export class ServiceContainer{
         }
     }
 
+    public getAcademyEventEmitter():AcademyEventListener{
+        if(!this.academyEmitter){
+            this.academyEmitter = new AcademyEventListener()
+        }
+        return this.academyEmitter
+    }
     public getWizardService(whichType: WizardRepositoryTypes): WizardService {
         if (!this.wizardService) {
             const repository = this.getWizardRepository(whichType);
-            this.wizardService = new WizardService(repository);
+            const dispatcher = this.getAcademyEventEmitter()
+            this.wizardService = new WizardService(repository,dispatcher);
         }
         return this.wizardService;
     }

@@ -1,5 +1,5 @@
 import { ServiceContainer } from "./DI/service-container";
-import { NewWizard, WizardRepositoryTypes } from "./shared/types";
+import { NewWizard, SpellCastEvent, WizardRepositoryTypes } from "./shared/types";
 
 /** STEP 1 */
 const factory = new ServiceContainer()
@@ -33,4 +33,7 @@ const savedHaourir = wizardService.createWizard(haourirData)
 const wizardsInSlytherin=wizardService.getWizardsByHouse("Slytherin")
 console.log("-- List of wizards in Slytherin House --")
 console.log(wizardsInSlytherin);
-
+/** STEP 3 */
+console.log("---------------------- STEP 3 ---------------------")
+factory.getAcademyEventEmitter()
+wizardService.castSpell(77, "Expecto Patronum");
