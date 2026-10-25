@@ -56,4 +56,19 @@ describe("Test Wizard Service", () => {
     }).toThrowError("Spell power cannot be negative try another value!")
   })
 
+  it("Should reject a non valid Wizard" , ()=>{
+    const result_not_object =wizardService.isWizard("notwizard")
+    expect(result_not_object).toBeFalsy()
+
+    const result_object_not_valid = wizardService.isWizard({name : 62 , id: "HS"})
+    expect(result_object_not_valid).toBeFalsy()
+
+    const result_house_invalid = wizardService.isWizard({name: 'Ari Haourir',house: 'Oujda',level: 0,id: 3,active: true})
+    expect(result_house_invalid).toBeFalsy()
+  })
+
+  it("Should return true on valid Wizard" , ()=>{
+    const result = wizardService.isWizard({name: 'Ari Haourir',house: 'Slytherin',level: 0,id: 3,active: true})
+    expect(result).toBeTruthy()
+  })
 });
